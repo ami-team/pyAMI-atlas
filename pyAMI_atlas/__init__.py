@@ -123,7 +123,7 @@ pyAMI.config.tables['datasets'] = {
 	'events': 'totalEvents',
 	'generator_name': 'generatorName',
 	'generator_tune': 'generatorTune',
-	'generator_filter_efficienty': 'genFiltEff',
+	'generator_filter_efficiency': 'genFiltEff',
 	'geometry': 'geometryVersion',
 	'in_container': 'inContainer',
 	'job_config': 'jobConfig',
@@ -163,7 +163,7 @@ pyAMI.config.tables['files'] = {
 	'size': 'fileSize',
 	'events': 'events',
 	'input_file': 'inputFile',
-	'generator_filter_efficienty': 'genFiltEff',
+	'generator_filter_efficiency': 'genFiltEff',
 	'cross_section': 'crossSection',
 
 	'@catalog': 'mc[0-9].*|data[0-9].*',

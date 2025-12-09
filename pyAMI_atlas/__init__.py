@@ -22,53 +22,45 @@ pyAMI.config.bug_report = pyAMI_atlas.config.bug_report
 
 #############################################################################
 
-pyAMI.config.endpoint_descrs['atlas'] = {'prot': 'https', 'host': 'ami.in2p3.fr', 'port': '443', 'path': '/AMI/servlet/net.hep.atlas.Database.Bookkeeping.AMI.Servlet.FrontEnd'}
-pyAMI.config.endpoint_descrs['atlas-dev'] = {'prot': 'https', 'host': 'ami-dev.in2p3.fr', 'port': '443', 'path': '/AMI/servlet/net.hep.atlas.Database.Bookkeeping.AMI.Servlet.FrontEnd'}
-pyAMI.config.endpoint_descrs['atlas-v2'] = {'prot': 'https', 'host': 'ami.in2p3.fr', 'port': '443', 'path': '/AMI2/FrontEnd'}
-pyAMI.config.endpoint_descrs['atlas-dev-v2'] = {'prot': 'https', 'host': 'ami-dev.in2p3.fr', 'port': '443', 'path': '/AMI2/FrontEnd'}
-
-pyAMI.config.endpoint_descrs['atlas-replica'] = {'prot': 'https', 'host': 'atlas-ami.cern.ch', 'port': '443', 'path': '/AMI/servlet/net.hep.atlas.Database.Bookkeeping.AMI.Servlet.FrontEnd'}
-pyAMI.config.endpoint_descrs['atlas-replica-v2'] = {'prot': 'https', 'host': 'atlas-ami.cern.ch', 'port': '443', 'path': '/AMI2/FrontEnd'}
+pyAMI.config.endpoint_descrs['atlas'] = {'prot': 'https', 'host': 'atlas-ami.cern.ch', 'port': '443', 'path': '/AMI2/FrontEnd'}
 
 #############################################################################
 
 pyAMI.config.tables['projects'] = {
 	'description': 'description',
 	'is_base_type': 'isBaseType',
-	'manager': 'projectManager',
-	'read_status': 'readStatus=valid',
-	'tag': 'projectTag',
-	'write_status': 'writeStatus',
+	'manager': 'createdBy',
+	'read_status': 'status=valid',
+	'tag': 'project',
+	'write_status': 'status',
 
-	'@catalog': 'Atlas_Production:Atlas_Production',
-	'@entity': 'projects',
+	'@catalog': 'AMI_TEST',
+	'@entity': 'project',
 
 	'@primary': 'tag',
-	'@foreign': 'nomenclature',
 }
 
 pyAMI.config.tables['subprojects'] = {
 	'description': 'description',
 	'is_base_type': 'isBaseType',
-	'manager': 'projectManager',
-	'read_status': 'readStatus=valid',
-	'tag': 'subProjectTag',
-	'write_status': 'writeStatus',
+	'manager': 'createdBy',
+	'read_status': 'status=valid',
+	'tag': 'subProject',
+	'write_status': 'status',
 
-	'@catalog': 'Atlas_Production:Atlas_Production',
-	'@entity': 'subprojects',
+	'@catalog': 'AMI_TEST',
+	'@entity': 'sub_project',
 
 	'@primary': 'tag',
-	'@foreign': 'nomenclature',
 }
 
 pyAMI.config.tables['types'] = {
 	'description': 'description',
 	'name': 'dataType',
-	'read_status': 'readStatus=valid',
-	'write_status': 'writeStatus',
+	'read_status': 'status=valid',
+	'write_status': 'status',
 
-	'@catalog': 'Atlas_Production:Atlas_Production',
+	'@catalog': 'AMI_TEST',
 	'@entity': 'data_type',
 
 	'@primary': 'name',
@@ -77,122 +69,135 @@ pyAMI.config.tables['types'] = {
 pyAMI.config.tables['subtypes'] = {
 	'description': 'description',
 	'name': 'subDataType',
-	'read_status': 'readStatus=valid',
-	'write_status': 'writeStatus',
+	'read_status': 'status=valid',
+	'write_status': 'status',
 
-	'@catalog': 'Atlas_Production:Atlas_Production',
-	'@entity': 'subData_type',
+	'@catalog': 'AMI_TEST',
+	'@entity': 'sub_data_type',
 
 	'@primary': 'name',
 }
 
-pyAMI.config.tables['nomenclature'] = {
-	'description': 'nomenclatureName',
-	'read_status': 'readStatus=valid',
-	'tag': 'nomenclatureTag',
-	'template': 'nomenclatureTemplate',
-	'write_status': 'writeStatus',
-
-	'@catalog': 'Atlas_Production:Atlas_Production',
-	'@entity': 'nomenclature',
-
-	'@primary': 'tag, template',
-}
+#pyAMI.config.tables['nomenclature'] = {
+#	'description': 'nomenclatureName',
+#	'read_status': 'readStatus=valid',
+#	'tag': 'nomenclatureTag',
+#	'template': 'nomenclatureTemplate',
+#	'write_status': 'writeStatus',
+#
+#	'@catalog': 'Atlas_Production:Atlas_Production',
+#	'@entity': 'nomenclature',
+#
+#	'@primary': 'tag, template',
+#}
 
 pyAMI.config.tables['prodsteps'] = {
-	'name': 'productionStepName',
-	'read_status': 'readStatus=VALID',
-	'tag': 'productionStepTag',
-	'write_status': 'writeStatus',
+	'name': 'productionStep',
+	'read_status': 'status=VALID',
+	'write_status': 'status',
 
-	'@catalog': 'Atlas_Production:Atlas_Production',
-	'@entity': 'productionStep',
+	'@catalog': 'AMI_TEST',
+	'@entity': 'production_step',
 
-	'@primary': 'name, tag',
+	'@primary': 'name',
 }
 
 pyAMI.config.tables['datasets'] = {
+    'scope': 'scope',
 	'ami_status': 'amiStatus=VALID',
-	'atlas_release': 'AtlasRelease',
+	'atlas_release': 'atlasRelease',
 	'beam': 'beamType',
-	'conditions_tag': 'conditionsTag',
-	'completion': 'completion',
+#	'conditions_tag': 'conditionsTag',
+#	'completion': 'completion',
 	'cross_section': 'crossSection',
 	'dataset_number': 'datasetNumber',
 	'ecm_energy': 'ecmEnergy',
-	'events': 'totalEvents',
+	'events': 'nEvents',
 	'generator_name': 'generatorName',
 	'generator_tune': 'generatorTune',
 	'generator_filter_efficiency': 'genFiltEff',
-	'geometry': 'geometryVersion',
+#	'geometry': 'geometryVersion',
 	'in_container': 'inContainer',
-	'job_config': 'jobConfig',
-	'ldn': 'logicalDatasetName',
-	'modified': 'lastModified',
+#	'job_config': 'jobConfig',
+    'k_factor' : 'kFactor',
+	'ldn': 'ldn',
+	'modified': 'modified',
 	'nfiles': 'nFiles',
-	'period': 'period',
-	'pdf': 'PDF',
-	'physics_comment': 'physicsComment',
+#	'period': 'period',
+#	'pdf': 'PDF',
+#	'physics_comment': 'physicsComment',
 	'physics_short': 'physicsShort',
 	'production_step': 'productionStep',
-	'prodsys_status': 'prodsysStatus',
-	'project': 'projectName',
-	'requested_by': 'requestedBy',
-	'responsible': 'physicistResponsible',
+	'prodsys_status': 'productionStatus',
+	'project': 'scope',
+	'requested_by': 'createdBy',
+	'responsible': 'responsible',
 	'run_number': 'runNumber',
 	'stream': 'streamName',
-	'total_size': 'totalSize',
-	'transformation_package': 'TransformationPackage',
-	'trash_annotation': 'trashAnnotation',
-	'trash_date': 'trashDate',
-	'trash_trigger': 'trashTrigger',
-	'trigger_config': 'triggerConfig',
+	'total_size': 'size',
+#	'transformation_package': 'TransformationPackage',
+#	'trash_annotation': 'trashAnnotation',
+#	'trash_date': 'trashDate',
+#	'trash_trigger': 'trashTrigger',
+#	'trigger_config': 'triggerConfig',
 	'type': 'dataType',
 	'ami_tags': 'version',
 
-	'@catalog': 'mc[0-9].*|data[0-9].*',
-	'@entity': 'dataset',
+    # ATTENTION LOGIQUE A MODIFIER... WILDCARD SUR ENTITY ?
+	'@catalog': 'AMI_TEST',
+	'@entity': 'g_dataset',
 
 	'@primary': 'ldn',
-	'@foreign': 'files, keywords, hashtags',
+	'@foreign': 'files',
 }
 
 pyAMI.config.tables['files'] = {
-	'lfn': 'LFN',
+    'scope': 'scope',
+	'lfn': 'lfn',
 	'guid': 'fileGUID',
 	'size': 'fileSize',
-	'events': 'events',
-	'input_file': 'inputFile',
+	'events': 'nEvents',
+#	'input_file': 'inputFile',
 	'generator_filter_efficiency': 'genFiltEff',
 	'cross_section': 'crossSection',
+	'neg_weights' : 'sumOfNegWeights',
+	'neg_weights-no-filter' : 'sumOfNegWeightsNoFilter',
+	'pos_weights' : 'sumOfPosWeights',
+	'pos_weights_no_filter' : 'sumOfPosWeightsNoFilter',
+	'lhe_neg_weights' : 'lheSumOfNegWeights',
+	'lhe_neg_weights_no_filter' : 'lheSumOfNegWeightsNoFilter',
+	'sqr_weights' : 'sumOfSqrWeights',
+	'sqr_weights_no_filter' : 'sumOfSqrWeightsNoFilter',
 
-	'@catalog': 'mc[0-9].*|data[0-9].*',
-	'@entity': 'files',
+	'file_status': 'fileStatus=VALID',
 
+	'@catalog': 'AMI_TEST',
+
+	'@entity': 'file',
 	'@primary': 'lfn',
 }
 
-pyAMI.config.tables['keywords'] = {
+#pyAMI.config.tables['keywords'] = {
+#
+#	'name': 'keyword',
+#
+#	'@catalog': 'mc[0-9].*|data[0-9].*',
+#	'@entity': 'dataset_keywords',
+#
+#	'@primary': 'name',
+#}
 
-	'name': 'keyword',
-
-	'@catalog': 'mc[0-9].*|data[0-9].*',
-	'@entity': 'dataset_keywords',
-
-	'@primary': 'name',
-}
-
-pyAMI.config.tables['hashtags'] = {
-
-	'scope': 'scope',
-	'name': 'name',
-	'fullname': 'fullname',
-	'comment': 'comment',
-
-	'@catalog': 'mc[0-9].*|data[0-9].*',
-	'@entity': 'HASHTAGS',
-
-	'@primary': 'fullname',
-}
+#pyAMI.config.tables['hashtags'] = {
+#
+#	'scope': 'scope',
+#	'name': 'name',
+#	'fullname': 'fullname',
+#	'comment': 'comment',
+#
+#	'@catalog': 'mc[0-9].*|data[0-9].*',
+#	'@entity': 'HASHTAGS',
+#
+#	'@primary': 'fullname',
+#}
 
 #############################################################################

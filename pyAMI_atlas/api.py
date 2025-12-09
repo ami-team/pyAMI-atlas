@@ -721,7 +721,47 @@ def mode_list_runs(client, args):
 # LIST FILES                                                                #
 #############################################################################
 
-def list_files(client, dataset, total = None, limit = None):
+def list_files(client, dataset, patterns = None, fields = None, order = None, limit = None, show_archived = False, **kwargs):
+	'''List files.
+
+	Args:
+	    :client: the pyAMI client [ pyAMI.client.Client ]
+	    :dataset: the logical dataset name [ str ]
+	    :patterns: the list of file patterns (glob with %) [ list<str> | None ]
+	    :fields: the list of extra fields to be shown if the result [ list<str> | None ], type ``ami list files --help`` in the shell to have the list of available fields
+	    :order: the list of fields for ordering the result [ list<str> | None ], type ``ami list files --help`` in the shell to have the list of available fields
+	    :limit: limit number of results [ int | tuple<int,int> | None ]
+	    :show_archived: show archived results [ bool ]
+
+	kwargs:
+	    additionnal constraints field_name:field_value (glob with %), type ``ami list datasets --help`` in the shell to have the list of available fields
+
+	Returns:
+	    an array of python dictionnaries.
+	'''
+
+	#####################################################################
+	# PATH PATTERNS                                                     #
+	#####################################################################
+
+	patterns = [pattern.rstrip('/') for pattern in pyAMI.utils.to_array(patterns, sep = ',')]
+
+	#####################################################################
+
+	kwargs['datasets.ldn'] = dataset
+
+	#####################################################################
+
+	if not 'file_status' in kwargs:
+		kwargs['file_status'] = 'VALID'
+
+	#####################################################################
+
+	return pyAMI.utils.smart_execute(client, 'files', patterns, fields, order, limit, show_archived, **kwargs).get_rows()
+
+#############################################################################
+
+""" def list_files(client, dataset, total = None, limit = None):
 	'''List dataset files.
 
 	Args:
@@ -751,13 +791,28 @@ def list_files(client, dataset, total = None, limit = None):
 		else:
 			command.append('-limit=0,%i' % limit)
 
-	return client.execute(command, format = 'dom_object').get_rows()
+	return client.execute(command, format = 'dom_object').get_rows() """
 
 #############################################################################
 
 def mode_list_files(client, args):
+
+	human = args.pop('human', False)
+
+	files = list_files(client, **args)
+
+	if human:
+		for file in files:
+			if 'events' in file : file['events'] = pyAMI_atlas.utils.humanize_numbs(file['events'])
+			if 'size' in file : file['size'] = pyAMI_atlas.utils.humanize_bytes(file['size'])
+
+	pyAMI_atlas.utils.print_table(client, files)
+
+	return 0
+
+""" def mode_list_files(client, args):
 	#####################################################################
-	#                                                                   #
+	#		                                                           #
 	#####################################################################
 
 	datasets = list_files(client, args['dataset'], total = args['count'], limit = args['limit'])
@@ -769,7 +824,7 @@ def mode_list_files(client, args):
 	if not args['long']:
 
 		for dataset in datasets:
-			print(dataset['LFN'])
+			print(dataset['lfn'])
 
 		return 0
 
@@ -793,7 +848,7 @@ def mode_list_files(client, args):
 
 	return 0
 
-#############################################################################
+############################################################################# """
 
 def getAvailableFieldsForCatalog(catalog):
 	'''List dataset files.

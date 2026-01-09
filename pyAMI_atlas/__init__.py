@@ -22,10 +22,10 @@ pyAMI.config.bug_report = pyAMI_atlas.config.bug_report
 
 #############################################################################
 
-pyAMI.config.endpoint_descrs['atlas'] = {'prot': 'https', 'host': 'ami.in2p3.fr', 'port': '443', 'path': '/AMI/servlet/net.hep.atlas.Database.Bookkeeping.AMI.Servlet.FrontEnd'}
-pyAMI.config.endpoint_descrs['atlas-dev'] = {'prot': 'https', 'host': 'ami-dev.in2p3.fr', 'port': '443', 'path': '/AMI/servlet/net.hep.atlas.Database.Bookkeeping.AMI.Servlet.FrontEnd'}
-pyAMI.config.endpoint_descrs['atlas-v2'] = {'prot': 'https', 'host': 'ami.in2p3.fr', 'port': '443', 'path': '/AMI2/FrontEnd'}
-pyAMI.config.endpoint_descrs['atlas-dev-v2'] = {'prot': 'https', 'host': 'ami-dev.in2p3.fr', 'port': '443', 'path': '/AMI2/FrontEnd'}
+pyAMI.config.endpoint_descrs['atlas'] = {'prot': 'https', 'host': 'atlas-ami.cern.ch', 'port': '443', 'path': '/AMI/servlet/net.hep.atlas.Database.Bookkeeping.AMI.Servlet.FrontEnd'}
+pyAMI.config.endpoint_descrs['atlas-dev'] = {'prot': 'https', 'host': 'atlas-ami-dev.cern.ch', 'port': '443', 'path': '/AMI/servlet/net.hep.atlas.Database.Bookkeeping.AMI.Servlet.FrontEnd'}
+pyAMI.config.endpoint_descrs['atlas-v2'] = {'prot': 'https', 'host': 'atlas-ami.cern.ch', 'port': '443', 'path': '/AMI2/FrontEnd'}
+pyAMI.config.endpoint_descrs['atlas-dev-v2'] = {'prot': 'https', 'host': 'atlas-ami-dev.cern.ch', 'port': '443', 'path': '/AMI2/FrontEnd'}
 
 pyAMI.config.endpoint_descrs['atlas-replica'] = {'prot': 'https', 'host': 'atlas-ami.cern.ch', 'port': '443', 'path': '/AMI/servlet/net.hep.atlas.Database.Bookkeeping.AMI.Servlet.FrontEnd'}
 pyAMI.config.endpoint_descrs['atlas-replica-v2'] = {'prot': 'https', 'host': 'atlas-ami.cern.ch', 'port': '443', 'path': '/AMI2/FrontEnd'}

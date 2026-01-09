@@ -666,7 +666,7 @@ def list_runs(client, year = None, data_periods = None):
 	'''
 
 	command = [
-		'AMIListRuns',
+		'GetRunsForDataPeriod',
 	]
 
 	if year:

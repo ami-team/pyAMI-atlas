@@ -1,4 +1,3 @@
-===========
 pyAMI.atlas
 ===========
 
@@ -69,20 +68,6 @@ Automatically install the latest version of pyAMI with `pip <http://pypi.python.
 
     pip install --user pyAMI_atlas
 
-or with ``easy_install`` (deprecated)::
-
-    easy_install --user pyAMI_atlas
-
-Omit the ``--user`` for a system-wide installation (requires root privileges).
-Add ``${HOME}/.local/bin`` to your ``${PATH}`` if using ``--user`` and if it
-is not there already (put this in your .bashrc)::
-
-    # For LINUX
-    export PATH=${HOME}/.local/bin${PATH:+:$PATH}
-
-    # For MAC OSX
-    export PATH=${HOME}/Library/Python/2.7/bin${PATH:+:$PATH}
-
 Execute the post-install script::
 
     ami_atlas_post_install
@@ -112,25 +97,19 @@ Automatic installation for WINDOWS
    Add to the path::
 
     C:\PYTHON27;C:\PYTHON27\Scripts
-
-3. Download and install `pip <https://bootstrap.pypa.io/get-pip.py>`__
-   (for easy installation of dependences)::
-
-    python get-pip.py
-
-4. Install pyAMI::
+3. Install pyAMI::
 
     pip install pyAMI_atlas
 
-5. Execute the post-install script::
+4. Execute the post-install script::
 
-    ami_atlas_post_install
+    ami_atlas_post_install.bat
 
 To upgrade an existing installation::
 
    pip install --upgrade pyAMI_core
    pip install --upgrade pyAMI_atlas
-   ami_atlas_post_install
+   ami_atlas_post_install.bat
 
 Authentication
 ==============

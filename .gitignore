@@ -1,4 +1,6 @@
-.idea/
-pyAMI_atlas.egg-info/
+dist
+.idea
+.venv
 
 *.iml
+*.lock

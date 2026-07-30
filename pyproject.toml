@@ -22,6 +22,10 @@ Homepage = "https://atlas-ami.cern.ch/"
 [project.scripts]
 ami_atlas = "pyAMI.__main__:entry_point"
 
+[tool.hatch.build.targets.wheel.shared-scripts]
+"ami_atlas_post_install" = "ami_atlas_post_install"
+"ami_atlas_post_install.bat" = "ami_atlas_post_install.bat"
+
 [tool.hatch.version]
 path = "pyAMI_atlas/config.py"
 pattern = '''version\s*=\s*['"](?P<version>[^'"]+)['"]'''

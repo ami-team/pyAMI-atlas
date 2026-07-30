@@ -12,10 +12,10 @@ from __future__ import (division, print_function, unicode_literals)
 #
 #############################################################################
 
-version = '5.1.9'
+version = '5.1.10'
 
 #############################################################################
 
-bug_report = 'Bug reports: ami@lpsc.in2p3.fr, http://ami.in2p3.fr/pyAMI/'
+bug_report = 'Bug reports: ami@lpsc.in2p3.fr, https://atlas-ami.cern.ch/docs/pyAMI/'
 
 #############################################################################

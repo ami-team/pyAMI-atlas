@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from __future__ import (division, print_function, unicode_literals)
-#############################################################################
+########################################################################################################################
 # Author  : Jerome ODIER, Jerome FULACHIER, Fabian LAMBERT, Solveig ALBRAND
 #
 # Email   : jerome.odier@lpsc.in2p3.fr
@@ -9,104 +9,106 @@ from __future__ import (division, print_function, unicode_literals)
 #           fabian.lambert@lpsc.in2p3.fr
 #           solveig.albrand@lpsc.in2p3.fr
 #
-#############################################################################
+########################################################################################################################
 
 import os, sys, shutil, pyAMI, pyAMI_atlas
 
-#############################################################################
+########################################################################################################################
 
 def whereis(program):
-	PATH = os.environ.get('PATH')
 
-	for path in PATH.split(os.pathsep):
+    PATH = os.environ.get('PATH')
 
-		result = os.path.join(path, program)
+    for path in PATH.split(os.pathsep):
 
-		if os.path.exists(result) and not os.path.isdir(result):
+        result = os.path.join(path, program)
 
-			return result
+        if os.path.exists(result) and not os.path.isdir(result):
 
-	return None
-	
-#############################################################################
+            return result
+
+    return None
+    
+########################################################################################################################
 
 if __name__ == '__main__':
-	#####################################################################
 
-	setup_py = os.path.dirname(__file__) + os.path.sep + 'setup.py'
+    ####################################################################################################################
 
-	if os.path.exists(setup_py):
-		print('error: could not execute the post-install script in the source directory')
+    setup_py = os.path.dirname(__file__) + os.path.sep + 'setup.py'
 
-		sys.exit(1)
+    if os.path.exists(setup_py):
+        print('error: could not execute the post-install script in the source directory')
 
-	#####################################################################
+        sys.exit(1)
 
-	print('Finalising installation...')
+    ####################################################################################################################
 
-	#####################################################################
+    print('Finalising installation...')
 
-	pyAMI_core_dir = os.path.dirname(pyAMI.__file__)
-	pyAMI_atlas_dir = os.path.dirname(pyAMI_atlas.__file__)
+    ####################################################################################################################
 
-	pyAMI_dot_atlas_dir = pyAMI_core_dir + os.path.sep + 'atlas'
+    pyAMI_core_dir = os.path.dirname(pyAMI.__file__)
+    pyAMI_atlas_dir = os.path.dirname(pyAMI_atlas.__file__)
 
-	try:
-		if os.name == 'nt':
-			if os.path.isdir(pyAMI_dot_atlas_dir):
-				shutil.rmtree(pyAMI_dot_atlas_dir)
+    pyAMI_dot_atlas_dir = pyAMI_core_dir + os.path.sep + 'atlas'
 
-			shutil.copytree(pyAMI_atlas_dir, pyAMI_dot_atlas_dir)
+    try:
+        if os.name == 'nt':
+            if os.path.isdir(pyAMI_dot_atlas_dir):
+                shutil.rmtree(pyAMI_dot_atlas_dir)
 
-		else:
-			if os.path.islink(pyAMI_dot_atlas_dir):
-				os.remove(pyAMI_dot_atlas_dir)
+            shutil.copytree(pyAMI_atlas_dir, pyAMI_dot_atlas_dir)
 
-			os.symlink(pyAMI_atlas_dir, pyAMI_dot_atlas_dir)
+        else:
+            if os.path.islink(pyAMI_dot_atlas_dir):
+                os.remove(pyAMI_dot_atlas_dir)
 
-	except OSError as e:
-		print(e)
+            os.symlink(pyAMI_atlas_dir, pyAMI_dot_atlas_dir)
 
-		sys.exit(1)
+    except OSError as e:
+        print(e)
 
-	#####################################################################
+        sys.exit(1)
 
-	ami_path       = whereis('ami'      )
-	ami_atlas_path = whereis('ami_atlas')
+    ####################################################################################################################
 
-	if not ami_path      \
-	   or                \
-	   not ami_atlas_path:
-		print('error: could not find `ami` and/or `ami_atlas`, set your `PATH` variable before running the post-install script')
+    ami_path       = whereis('ami'      )
+    ami_atlas_path = whereis('ami_atlas')
 
-		sys.exit(1)
+    if not ami_path      \
+       or                \
+       not ami_atlas_path:
+        print('error: could not find `ami` and/or `ami_atlas`, set your `PATH` variable before running the post-install script')
 
-	#####################################################################
+        sys.exit(1)
 
-	prompt = 'Redirect `ami` to `ami_atlas` (yN)? '
+    ####################################################################################################################
 
-	if sys.version_info[0] == 3:
-		q = input(prompt)
-	else:
-		q = raw_input(prompt)
+    prompt = 'Redirect `ami` to `ami_atlas` (yN)? '
 
-	if q.upper() == 'Y':
-	
-		try:
-			os.remove(ami_path)
+    if sys.version_info[0] == 3:
+        q = input(prompt)
+    else:
+        q = raw_input(prompt)
 
-			if os.name == 'nt':
-				shutil.copyfile(ami_atlas_path, ami_path)
-			else:
-				os.symlink(ami_atlas_path, ami_path)
+    if q.upper() == 'Y':
+    
+        try:
+            os.remove(ami_path)
 
-		except OSError as e:
-			print(e)
+            if os.name == 'nt':
+                shutil.copyfile(ami_atlas_path, ami_path)
+            else:
+                os.symlink(ami_atlas_path, ami_path)
 
-			sys.exit(1)
+        except OSError as e:
+            print(e)
 
-	#####################################################################
+            sys.exit(1)
 
-	sys.exit(0)
+    ####################################################################################################################
 
-#############################################################################
+    sys.exit(0)
+
+########################################################################################################################

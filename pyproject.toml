@@ -28,7 +28,7 @@ pattern = '''version\s*=\s*['"](?P<version>[^'"]+)['"]'''
 
 [tool.hatch.build.targets.wheel]
 packages = ["pyAMI_atlas"]
-shared-scripts = {
-    "ami_atlas_post_install" = "ami_atlas_post_install",
-    "ami_atlas_post_install.bat" = "ami_atlas_post_install.bat",
-}
+
+[tool.hatch.build.targets.wheel.shared-scripts]
+"ami_atlas_post_install" = "ami_atlas_post_install"
+"ami_atlas_post_install.bat" = "ami_atlas_post_install.bat"

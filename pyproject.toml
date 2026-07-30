@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyAMI-atlas"
+dynamic = ["version"]
+description = "Python ATLAS Metadata Interface (pyAMI) for ATLAS"
+readme = "README.md"
+license = "LGPL-3.0-or-later"
+authors = [
+    {name = "Jerome ODIER", email = "jerome.odier@lpsc.in2p3.fr"},
+    {name = "Jerome FULACHIER", email = "jerome.fulachier@lpsc.in2p3.fr"},
+    {name = "Fabian LAMBERT", email = "fabian.lambert@lpsc.in2p3.fr"},
+    {name = "Solveig ALBRAND", email = "solveig.albrand@lpsc.in2p3.fr"},
+]
+dependencies = ["pyAMI-core"]
+
+[project.urls]
+Homepage = "https://atlas-ami.cern.ch/"
+
+[project.scripts]
+ami_atlas = "pyAMI.__main__:entry_point"
+
+[tool.hatch.version]
+path = "pyAMI_atlas/config.py"
+pattern = '''version\s*=\s*['"](?P<version>[^'"]+)['"]'''
+
+[tool.hatch.build.targets.wheel]
+packages = ["pyAMI_atlas"]

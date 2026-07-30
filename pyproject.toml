@@ -20,7 +20,7 @@ dependencies = ["pyAMI-core"]
 Homepage = "https://atlas-ami.cern.ch/"
 
 [project.scripts]
-ami_atlas = "pyAMI.__main__:entry_point"
+ami_atlas = "pyAMI_atlas.__main__:entry_point"
 
 [tool.hatch.version]
 path = "pyAMI_atlas/config.py"
